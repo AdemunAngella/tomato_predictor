@@ -70,7 +70,7 @@ body {
     padding: 6.5px 110px;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
     position: absolute;
-    # top: 0;
+    top: 0;
     right: 0px;
     align-items: center;
     z-index: 999990;
