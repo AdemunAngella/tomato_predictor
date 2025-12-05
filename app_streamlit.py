@@ -26,7 +26,8 @@ LOGO = os.path.join(STATIC_DIR, "logo.png")
 FRESH_ICON = os.path.join(STATIC_DIR, "fresh.png")
 ROTTEN_ICON = os.path.join(STATIC_DIR, "rotten.png")
 
-MODEL_PATH = os.path.join("models", "tomato_grading_model.h5")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "models", "tomato_grading_model.h5")
 IMG_DISPLAY_SIZE = (526, 250)   # preview display size (width, height)
 IMG_MODEL_SIZE = (224, 224)     # model input size
 
@@ -106,7 +107,6 @@ body {
   background: #f8fbff;
   color:#374151;
 }
-
 /* Red button */
 .stButton button[kind="primary"], 
 .stButton button {
@@ -222,7 +222,12 @@ with left:
         label_visibility="collapsed"
     )
 
+    st.markdown("**Or take a photo using your camera**")
+    camera_file = st.camera_input("", label_visibility="collapsed")
+
     pil_image = None
+
+    # PRIORITY: Upload first, else camera
     if uploaded is not None:
         try:
             pil_image = Image.open(io.BytesIO(uploaded.getvalue())).convert("RGB")
@@ -230,17 +235,25 @@ with left:
         except Exception:
             st.error("Could not read uploaded image. Try a different file.")
 
+    elif camera_file is not None:
+        try:
+            pil_image = Image.open(io.BytesIO(camera_file.getvalue())).convert("RGB")
+            save_upload(pil_image, prefix="cam")
+        except Exception:
+            st.error("Could not read camera image.")
+
+    # PREVIEW
     if pil_image is not None:
         preview = make_preview_image(pil_image, IMG_DISPLAY_SIZE)
         st.image(preview, caption="Preview", width=IMG_DISPLAY_SIZE[0])
     else:
-        st.info("No preview yet. Upload a photo to continue.")
+        st.info("No preview yet. Upload or take a photo to continue.")
 
     analyze_clicked = st.button("Analyze", use_container_width=True)
 
     if analyze_clicked:
         if pil_image is None:
-            st.error("Please upload an image first.")
+            st.error("Please upload or take a photo first.")
         else:
             with st.spinner("Analyzing image..."):
                 arr = prepare_for_model(pil_image)
@@ -260,8 +273,7 @@ with left:
                     "label": label,
                     "confidence": round(confidence * 100, 2)
                 })
-                
-                # Results heading
+
                 st.markdown(
                     "<h4 style='text-align:center; margin-top:20px;'>Results:</h4>",
                     unsafe_allow_html=True
@@ -272,13 +284,11 @@ with left:
 
                 color = "#28a745" if "Fresh" in label else "#dc2626"
 
-                # Centered label
                 st.markdown(
                     f"<h4 style='text-align:center; color:{color}; margin-bottom:-20px;'>{label}</h4>",
                     unsafe_allow_html=True
                 )
 
-                # Centered confidence
                 st.markdown(
                     f"<p style='text-align:center; color:#6b7280; margin-top:0;'>Confidence: {round(confidence * 100, 2)}%</p>",
                     unsafe_allow_html=True
@@ -331,10 +341,6 @@ with right:
         ax.set_yticks(range(0, max(max(fresh_cum), max(rotten_cum)) + 1))
 
         ax.legend()
-
-        # Set legend color to match line colors
-        # for text, line in zip(legend.get_texts(), [fresh_line, rotten_line]):
-        #     text.set_color(line.get_color())
 
         ax.grid(True, linestyle="--", alpha=0.4)
 
