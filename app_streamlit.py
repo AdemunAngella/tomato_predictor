@@ -274,8 +274,8 @@ with left:
                 #     st.image(icon_path, width=42)
 
                 color = "#28a745" if "Fresh" in label else "#dc2626"
-                st.markdown(f"<h4 style='text-align:center; color:{color}; margin-bottom:-10px; margin-top: -75px;'>{label}</h4>", unsafe_allow_html=True)
-                st.markdown(f"<p style='text-align:center; color:#6b7280; margin-top:-50px;'>Confidence: {round(confidence,2)}%</p>", unsafe_allow_html=True)
+                st.markdown(f"<h4 style='text-align:center; color:{color};'>{label}</h4>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align:center; color:#6b7280;'>Confidence: {round(confidence,2)}%</p>", unsafe_allow_html=True)
 
 # RIGHT PANEL
 with right:
