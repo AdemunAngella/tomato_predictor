@@ -269,9 +269,9 @@ with left:
                     "confidence": round(confidence*100,2)
                 })
 
-                st.markdown("<h4 style='text-align:center; margin-top:20px;'>Results:</h4>", unsafe_allow_html=True)
-                if os.path.exists(icon_path):
-                    st.image(icon_path, width=42)
+                # st.markdown("<h4 style='text-align:center; margin-top:20px;'>Results:</h4>", unsafe_allow_html=True)
+                # if os.path.exists(icon_path):
+                #     st.image(icon_path, width=42)
 
                 color = "#28a745" if "Fresh" in label else "#dc2626"
                 st.markdown(f"<h4 style='text-align:center; color:{color}; margin-bottom:-10px; margin-top: -75px;'>{label}</h4>", unsafe_allow_html=True)
