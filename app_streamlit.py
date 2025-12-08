@@ -130,7 +130,6 @@ body {
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
     font-weight: 700; 
     font-size: 19px;
-    margin-top: -10px !important;
 }
 .st-emotion-cache-pk3c77 {
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
