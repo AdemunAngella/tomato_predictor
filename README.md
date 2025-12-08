@@ -97,13 +97,14 @@ and a confidence chart, all running smoothly in the browser.
 
 ## Requirements
 
-    streamlit==1.26.1
-    tensorflow==2.20.0
-    numpy==2.3.5
-    pandas==2.1.1
-    matplotlib==3.7.2
-    Pillow==12.0.0
-    opencv-python
+    streamlit==1.26.0
+    tensorflow==2.13.0
+    numpy==1.26.2
+    pillow==10.0.0
+    opencv-python-headless==4.8.1.78
+    matplotlib==3.8.0
+    seaborn==0.12.2
+    scikit-learn==1.3.2
 
 ## License
 
