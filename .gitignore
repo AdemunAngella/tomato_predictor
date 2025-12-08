@@ -1,6 +1,18 @@
-venv/
-env/
+# Ignore uploads
+static/uploads/*
+
+# Python
 __pycache__/
 *.pyc
-.cache/
-.ipynb_checkpoints/
+
+# Virtual envs
+env/
+venv/
+.myenv/
+
+# Streamlit cache
+.streamlit/
+
+# OS files
+.DS_Store
+Thumbs.db

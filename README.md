@@ -1,50 +1,55 @@
 # Tomato Quality Classifier (Streamlit App)
 
-A simple and intuitive Streamlit-based web application that predicts whether
-a tomato is **Fresh** or **Rotten** using a trained TensorFlow/Keras
-deep learning model.
-The app provides real-time predictions, image preview, history tracking,
-and a confidence chart, all running smoothly in the browser.
+    A lightweight, user-friendly Streamlit application that predicts whether a tomato is Fresh or Rotten using a trained TensorFlow/Keras deep-learning model.
+    It provides instant predictions, image previews, a visual confidence chart, and a searchable prediction history, all running directly in the browser.
+
 
 ## Features
 
--   Upload Images (PNG/JPG/JPEG)
--   Instant Predictions powered by a TensorFlow/Keras model
--   Dynamic Confidence Chart (Chart.js)
--   Recent Predictions History (LocalStorage)
+    - Upload images (JPG, JPEG, PNG)
+    - Real-time predictions using a TensorFlow/Keras model
+    - Confidence visualization chart
+    - Built-in prediction history (Session State)
+    - Clean UI with icons and preview images
 
 ## Project Structure
 
-    tomato-app/
-    │
-    ├── app_streamlit.py
-    ├── requirements.txt
-    ├── models/
-    │   └── tomato_classifier.h5
-    │
-    ├── static/
-           ├── logo.png
-           ├── favicon.png
-           ├── fresh.png
-           ├── rotten.png
-           └── uploads/
+tomato-predictor/
+│
+├── app_streamlit.py
+├── requirements.txt
+├── models/
+│   └── tomato_predictor.keras
+│
+├── static/
+│   ├── logo.png
+│   ├── favicon.png
+│   ├── fresh.png
+│   ├── rotten.png
+│   └── uploads/
+│── .gitignore
+│── README.md
 
 ## Model Details
 
-    The model is a binary classifier trained to distinguish:
-
+    The classifier predicts two categories:
     - Fresh Tomato
     - Rotten Tomato
 
-    Model Output: 0 → Rotten Tomato
-                    1 → Fresh Tomato
+    Model Output Values: 
+        0 → Rotten Tomato
+        1 → Fresh Tomato
 
-    A sigmoid output layer is used, with a prediction threshold of 0.5.
+    The final layer uses a sigmoid activation function with a prediction threshold of 0.5.
 
 ## Running Locally
 
-    pip install -r requirements.txt
-    python app.py
+    Run the following commands:
+        pip install -r requirements.txt
+        streamlit run app_streamlit.py
+
+    App runs locally at:
+        http://127.0.0.1:8501/
 
 ## Installation & Setup
 
@@ -55,45 +60,35 @@ and a confidence chart, all running smoothly in the browser.
     2. Install dependencies
     pip install -r requirements.txt
 
-    3. Run the Streamlit app
-    python app_streamlit.py
+    3. Run the Streamlit application
+    streamlit run app_streamlit.py
 
-    The app will run on: http://127.0.0.1:8501/
+## Deployment (Streamlit Cloud)
 
-## Deployment (Digital Ocean)
+    1. Push this project to a new GitHub repository.
+    2. Visit share.streamlit.io and create a new deployment.
+    3. Select your repository and choose "app_streamlit.py" as the entry file.
+    4. Streamlit Cloud will automatically install dependencies from requirements.txt.
+    5. Open your app URL and test the features:
+        - Upload image
+        - View prediction
+        - Check prediction history
+        - Review confidence plot
 
-1.  Upload the entire tomato-predictor/ folder.
-2.  Create a virtual environment\ 
-        - mkvirtualenv tomato-env --python=3.11
-        - pip install -r requirements.txt
-3.  Install requirements\
-4.  Configure WSGI\
-        - from app import app as application
-5.  Set static files in the Streamlit Cloud Web panel:
-        -  URL	Directory
-            /static/home/username/tomato-predictor/static/
-6.  Test Your App
+##  Prediction History (Client-Side)
 
-        - Reload the web app on Streamlit Cloud.
-        - Visit your site URL (yourusername.streamlitcloud.com) and test:
-            _ Upload images
-            _ Prediction result and icons
-            _ History chart
+    No database is used.
+    All prediction history is stored temporarily using Streamlit’s session_state.
+    History resets when the session restarts.
 
-##  Client-Side Prediction History
-
-    No database is used - Nothing is stored on the server.
-    All prediction history is saved locally in the browser via localStorage.
-
-    Stored data includes:
-        - Timestamp (local date & time)
-        - Predicted label (Fresh/Rotten)
-        - Confidence (%)
-        - Icon path
+    Stored information includes:
+        - Timestamp
+        - Prediction label
+        - Confidence score
 
 ##  Contributing
 
-    Feel free to open issues or submit pull requests. Feedback and improvements are welcome!
+    Suggestions, feature additions, and pull requests are welcome.
 
 ## Requirements
 
@@ -112,7 +107,7 @@ and a confidence chart, all running smoothly in the browser.
 
 ##  Authors
 
-    Built for tomato quality prediction.
-    1. Proscovia Nabuguzi
-    2. Ademun Angella 
-    3. Hilda Ruth Akao
+    This project was developed for tomato quality prediction by:
+        1. Proscovia Nabuguzi
+        2. Ademun Angella 
+        3. Hilda Ruth Akao
