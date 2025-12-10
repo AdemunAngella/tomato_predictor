@@ -130,7 +130,6 @@ body {
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; 
     font-weight: 700; 
     font-size: 19px;
-    margin-top: -10px !important;
 }
 .st-emotion-cache-pk3c77 {
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -269,13 +268,13 @@ with left:
                     "confidence": round(confidence*100,2)
                 })
 
-                st.markdown("<h4 style='text-align:center; margin-top:20px;'>Results:</h4>", unsafe_allow_html=True)
-                if os.path.exists(icon_path):
-                    st.image(icon_path, width=42)
+                # st.markdown("<h4 style='text-align:center; margin-top:20px;'>Results:</h4>", unsafe_allow_html=True)
+                # if os.path.exists(icon_path):
+                #     st.image(icon_path, width=42)
 
                 color = "#28a745" if "Fresh" in label else "#dc2626"
-                st.markdown(f"<h4 style='text-align:center; color:{color}; margin-bottom:-10px; margin-top: -75px;'>{label}</h4>", unsafe_allow_html=True)
-                st.markdown(f"<p style='text-align:center; color:#6b7280; margin-top:-50px;'>Confidence: {round(confidence,2)}%</p>", unsafe_allow_html=True)
+                st.markdown(f"<h4 style='text-align:center; color:{color};'>{label}</h4>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align:center; color:#6b7280;'>Confidence: {round(confidence,2)}%</p>", unsafe_allow_html=True)
 
 # RIGHT PANEL
 with right:
