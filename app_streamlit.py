@@ -244,7 +244,7 @@ with left:
     else:
         st.info("No preview yet. Upload or take a photo to continue.")
 
-    analyze_clicked = st.button("Analyze", use_container_width=True)
+    analyze_clicked = st.button("Analyze", width='stretch')
 
     if analyze_clicked:
         if pil_image is None:
